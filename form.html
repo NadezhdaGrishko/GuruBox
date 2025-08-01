@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GuruBox</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+
+<body>
+  <header>
+    <div class="header container">
+      <a href="index.html">
+        <div class="logo-container logo-header">
+          <div class="logo-img">
+            <img src="./img/logo.png" alt="logo" />
+          </div>
+        </div>
+      </a>
+      <div class="logo-description">
+        <h2 class="logo-text">Системы поддержки принятия <br />решений на основе онтологий</h2>
+        <!-- <p>Системы поддержки принятия решений на основе онтологий</p> -->
+      </div>
+      <nav>
+        <ul class="header-nav">
+          <li class="knowledge-button-full"><a href="./form.html" class="link-form">Оставьте свои знания потомкам!</a>
+          </li>
+          <li class="knowledge-button-small"><a href="./form.html" class="link-form">Оставить знания</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="background_dark">
+      <div class="form-container form-page">
+        <form id="feedBackForm" class="form" action="./form_recaptcha.php" method="post" enctype="multipart/form-data">
+          <div class="form-text">
+            <h4>ВЫ ЭКСПЕРТ В КАКОЙ-ТО ПРЕДМЕТНОЙ ОБЛАСТИ?</h4>
+            <h5>Оставьте свои знания для обработки и использования в будущем в данной предметной области!</h5>
+          </div>
+          <div class="form-actions">
+            <div class="form-textarea">
+              <label for="branch">
+                <p class="form-title-description">Отрасль</p>
+              </label>
+              <textarea name="branch" class="textarea-form-page"
+                placeholder="Например, строительство, производство шин, рыбоводство и т.д."></textarea>
+            </div>
+            <div class="form-textarea">
+              <label for="subject_area">
+                <p class="form-title-description">Предметная область</p>
+              </label>
+              <textarea name="subject_area" class="textarea-form-page"
+                placeholder="Например, выбор материала, приёмка работ, проектирование"></textarea>
+            </div>
+            <div class="form-textarea">
+              <label for="cycle">
+                <p class="form-title-description">Этап или цикл (не обязательно)</p>
+              </label>
+              <textarea name="cycle" class="textarea-form-page "
+                placeholder="Например, перед началом работ, при выборе запчастей, в процессе монтажа"></textarea>
+            </div>
+            <div class="form-textarea">
+              <label for="knowledge">
+                <p class="form-title-description">Знания по существу</p>
+              </label>
+              <textarea name="knowledge" class="textarea-record"
+                placeholder="Введите свободным текстом свои знания"></textarea>
+            </div>
+            <div class="attachment attachment-form-page">
+              <div class="input__wrapper">
+                <input name="file" type="file" id="input__file" class="input input__file" multiple>
+                <label for="input__file" class="input__file-button">
+                  <span class="input__file-icon-wrapper"><img class="input__file-icon" src="./img/download.png"
+                      alt="Выбрать файл" width="25"></span>
+                  <span class="input__file-button-text">Выберите файл</span>
+                </label>
+              </div>
+            </div>
+            <div class="form-button form-textarea button-recaptha">
+              <div class="g-recaptcha recaptcha-form" data-sitekey="6LeusV8pAAAAAPNIaMYyZMMoM8pbflPgavNuKcUR"></div>
+              <div class="text-danger" id="recaptchaError"></div>
+              <input type="submit" value="Отправить">
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+
+    <div class="container footer-container">
+      <a href="index.html">
+        <div class="logo-container logo-header">
+          <div class="logo-img">
+            <img src="./img/logo.png" alt="logo" />
+          </div>
+
+        </div>
+      </a>
+      <div class="logo-description">
+        <h2 class="logo-text">Системы поддержки принятия <br />решений на основе онтологий</h2>
+      </div>
+      <div class="contacts">
+        <h1>Связаться с нами</h1>
+        <div class="contacts-block">
+          <img src="./img/mail.png" alt="mail">
+          <p href="#">info@masicteam.ru</p>
+        </div>
+        <a class="contacts-block" href="https://web.telegram.org/k/#@DmitryGerdelin">
+          <img src="./img/phone.png" alt="phone">
+          <p>+7(921) 936 0170</p>
+        </a>
+        <a class="contacts-block" href="https://www.masicteam.ru">
+          <img src="./img/logo-master.png" class="logo-master-footer" alt="logo">
+          <p>Мастерская современных <br />интернет коммуникаций</p>
+        </a>
+      </div>
+
+    </div>
+    <p class="reserved">&copy; 2023. Все права защищены.</p>
+
+  </footer>
+
+  <script>
+    let inputs = document.querySelectorAll('.input__file');
+    Array.prototype.forEach.call(inputs, function (input) {
+      let label = input.nextElementSibling,
+        labelVal = label.querySelector('.input__file-button-text').innerText;
+
+      input.addEventListener('change', function (e) {
+        let countFiles = '';
+        if (this.files && this.files.length >= 1)
+          countFiles = this.files.length;
+
+        if (countFiles)
+          label.querySelector('.input__file-button-text').innerText = 'Выбрано файлов: ' + countFiles;
+        else
+          label.querySelector('.input__file-button-text').innerText = labelVal;
+      });
+    });
+  </script>
+
+
+  <script>
+    $(document).ready(function () {
+      $("#feedBackForm").on("submit", function (event) {
+        event.preventDefault();
+
+        let captcha = grecaptcha.getResponse();
+
+        if (!captcha.length) {
+          $('#recaptchaError').text('* Вы не прошли проверку капчей');
+        } else {
+          $('#recaptchaError').text('');
+
+          let dataForm = $(this).serialize();
+
+          $.ajax({
+            url: '/form_recaptcha.php',
+            method: 'post',
+            dataType: 'html',
+            data: dataForm,
+            success: function (data) {
+              if (data.trim() === "Письмо отправлено") {
+                alert("Письмо успешно отправлено");
+              } else {
+                console.log(data);
+                alert("Произошла ошибка при отправке письма");
+
+              }
+
+              // Сбросить reCAPTCHA
+              grecaptcha.reset();
+            },
+            error: function () {
+              alert("Произошла ошибка при отправке запроса");
+            }
+          });
+        }
+      });
+    });
+
+  </script>
+</body>
+
+</html>

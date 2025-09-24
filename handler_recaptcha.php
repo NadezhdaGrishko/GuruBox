@@ -4,7 +4,7 @@
     $captcha = $_POST['g-recaptcha-response'];
 
     // Проверка reCAPTCHA
-    $secretKey = "6LdhywwpAAAAAL1MQQrMp9XyOYurCJiwtxBMnZwP";
+    $secretKey = "6LeKmtMrAAAAAF1NefdS0N9KP3v8BgyMX8fhhaII";
     $url = 'https://www.google.com/recaptcha/api/siteverify';
     $data = [
         'secret' => $secretKey,
